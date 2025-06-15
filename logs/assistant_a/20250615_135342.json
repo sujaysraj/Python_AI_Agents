@@ -1,0 +1,1154 @@
+[
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:22.336575",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:22.843840",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:22.845533",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.351788",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.353571",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.354522",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.355009",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.355446",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.861545",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.862934",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.863573",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.864036",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.864442",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.864839",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.865245",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.865656",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.866165",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.866540",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.866946",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.867355",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:23.867748",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.370277",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.371824",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.372749",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.373204",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.373526",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.373840",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.374169",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.374486",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.375130",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.375580",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.375898",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.376214",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.376541",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.376863",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.377193",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.377523",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.377867",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.378270",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.378627",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.378989",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.379352",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.379786",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.380215",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.380653",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.381089",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.381527",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.381984",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.382569",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.383504",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.384408",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.385224",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.386045",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.386879",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.387666",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.894265",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.896510",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.897810",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.898954",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.900193",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.901335",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.902487",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.903552",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.904511",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.905483",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.906429",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.907381",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.908290",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.909136",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.909955",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.910782",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.911612",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.912472",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.913334",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.914218",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.915116",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.915991",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.916797",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.917855",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.918718",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.919717",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.920773",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.921620",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.922459",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.923301",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.924106",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.924880",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.925662",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.926486",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.927318",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.928138",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.928944",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.929766",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.930585",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.931401",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.932161",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.932909",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.933670",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.934437",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.935200",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.935993",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.936796",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.937583",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.938431",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.939227",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.940041",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.940869",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.941677",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.942443",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.943209",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.943980",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.944745",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.945529",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.946324",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.947138",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.947957",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.948759",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.949571",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.950387",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.951220",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.952054",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.952884",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.953696",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.954471",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.955295",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.956113",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.956952",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.957764",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.958575",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.959390",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.960212",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.961041",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.961883",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.962751",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.963587",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.964401",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.965224",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.966051",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.966887",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.967723",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.968567",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.969419",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.970279",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T13:53:24.971134",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]

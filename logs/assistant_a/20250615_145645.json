@@ -1,0 +1,34 @@
+[
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T14:56:42.719603",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T14:56:43.725287",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T14:56:44.732386",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T14:56:45.734412",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]

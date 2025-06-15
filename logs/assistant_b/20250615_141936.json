@@ -1,0 +1,66 @@
+[
+  {
+    "from": "assistant_a",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:11:47.695042",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Hi there! How can I help you today? If you have any questions or need information on a specific topic, feel free to ask.",
+    "timestamp": "2025-06-15T14:11:59.566051",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Hello! How can I assist you today? If there'self anything specific in mind, feel free to share.",
+    "timestamp": "2025-06-15T14:12:00.596887",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Hello there! How can I help you today?",
+    "timestamp": "2025-06-15T14:12:01.357902",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Hi there! How can I help you today? If you have any questions or need information on a specific topic, feel free to ask.",
+    "timestamp": "2025-06-15T14:12:02.482287",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Hello! How can I help you today?",
+    "timestamp": "2025-06-15T14:12:03.231753",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Hi there! How can I assist you today?",
+    "timestamp": "2025-06-15T14:12:03.981008",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Hello! How can I help you today?",
+    "timestamp": "2025-06-15T14:12:04.689750",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]

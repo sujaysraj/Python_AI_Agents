@@ -1,0 +1,10 @@
+[
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T12:39:14.034832",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]

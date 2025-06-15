@@ -1,0 +1,10 @@
+[
+  {
+    "from": "assistant_a",
+    "message": "hi",
+    "timestamp": "2025-06-15T12:47:26.731594",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": true
+  }
+]
