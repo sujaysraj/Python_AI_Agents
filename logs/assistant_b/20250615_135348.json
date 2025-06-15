@@ -1,0 +1,66 @@
+[
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T13:53:42.761766",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T13:53:43.769827",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T13:53:43.899845",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T13:53:44.776971",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T13:53:44.906901",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T13:53:45.783737",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T13:53:46.789827",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T13:53:47.796912",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]

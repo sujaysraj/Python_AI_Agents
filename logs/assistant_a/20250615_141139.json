@@ -1,0 +1,170 @@
+[
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:07.504183",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:08.011853",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:08.013689",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:08.520266",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:08.521228",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:08.522201",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:08.522728",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:08.523246",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.031336",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.032546",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.033952",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.034693",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.035330",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.035971",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.036601",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.037577",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.038260",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.038994",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.040171",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.040940",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-15T14:09:09.041615",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]

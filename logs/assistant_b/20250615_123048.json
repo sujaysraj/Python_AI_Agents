@@ -1,0 +1,50 @@
+[
+  {
+    "from": "assistant_a",
+    "message": "hi",
+    "timestamp": "2025-06-15T12:17:23.870330",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": true
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Hello",
+    "timestamp": "2025-06-15T12:17:40.775118",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Hello",
+    "timestamp": "2025-06-15T12:17:43.426411",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "hi",
+    "timestamp": "2025-06-15T12:18:10.858290",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": true
+  },
+  {
+    "from": "assistant_a",
+    "message": "What's the weather like?",
+    "timestamp": "2025-06-15T12:18:35.848105",
+    "type": "bot",
+    "conversation_id": null,
+    "user_initiated": true
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Hello",
+    "timestamp": "2025-06-15T12:19:18.572879",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]
