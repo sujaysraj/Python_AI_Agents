@@ -1,0 +1,18 @@
+# Core AI & NLP
+transformers>=4.40.0
+torch>=2.2.0
+sentencepiece          # for tokenizers like phi
+accelerate             # optional, for optimized inference
+
+# File handling and CLI tools
+rich                   # optional: pretty printing/logs (suggested)
+
+# Typing & data parsing (builtin but good to list)
+typing-extensions
+
+# Optional: If using Ollama to call local LLMs via HTTP
+requests
+
+# If using Whisper or Piper later (for speech)
+openai-whisper         # if using Whisper
+TTS                    # if you choose Coqui TTS later
