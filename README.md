@@ -25,7 +25,7 @@ Corveta.AI is a privacy-first, local-first assistant framework where AI agents c
 ---
 
 ## 🗂️ Project Structure
-
+```
 assistant_network/
 ├── assistant_a/
 │ └── main.py # Launch assistant A
@@ -39,7 +39,7 @@ assistant_network/
 ├── logs/ # Archived message logs per assistant
 └── utils/
 └── (reserved) # Future: context memory, NLP tools, etc.
-
+```
 
 ---
 
@@ -48,9 +48,13 @@ assistant_network/
 1. Make sure you have [Ollama](https://ollama.com/) and the `phi3` model installed:
    ```ollama run phi3```
 2. In two terminals:
-   ```python assistant_a/main.py```
-   ```python assistant_b/main.py```
-3. Start chatting with either assistant!
+   ```
+   python assistant_a/main.py
+   ```
+   ```
+   python assistant_b/main.py
+   ```
+4. Start chatting with either assistant!
 
 🛠️ Future Enhancements
 🧠 Context Awareness
