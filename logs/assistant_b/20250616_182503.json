@@ -1,0 +1,20 @@
+[
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:25:02.177537",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false,
+    "hmac_sig": "e45af252ac3ab53673c026fd0d623f972d694d765bd002e4af37f76662e1727c"
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:25:03.183629",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false,
+    "hmac_sig": "e45af252ac3ab53673c026fd0d623f972d694d765bd002e4af37f76662e1727c"
+  }
+]

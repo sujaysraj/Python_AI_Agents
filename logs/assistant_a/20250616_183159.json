@@ -1,0 +1,47 @@
+[
+  {
+    "from": "assistant_b",
+    "message": "Handshake ACK",
+    "timestamp": "2025-06-16T18:30:08.648770",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false,
+    "hmac_sig": "6a43e9e7f7dd529eaeffb7d86c11b9ad6f627a6a2263075dd057b00dca85bbbf"
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:31:56.098116",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false,
+    "hmac_sig": "e45af252ac3ab53673c026fd0d623f972d694d765bd002e4af37f76662e1727c"
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:31:57.106996",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false,
+    "hmac_sig": "e45af252ac3ab53673c026fd0d623f972d694d765bd002e4af37f76662e1727c"
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:31:58.113430",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false,
+    "hmac_sig": "e45af252ac3ab53673c026fd0d623f972d694d765bd002e4af37f76662e1727c"
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:31:59.122913",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false,
+    "hmac_sig": "e45af252ac3ab53673c026fd0d623f972d694d765bd002e4af37f76662e1727c"
+  }
+]
