@@ -1,10 +1,17 @@
 # common/messenger.py
 
 import json
+import sys
+import hmac
+import hashlib
+import os
+from dotenv import load_dotenv
 from pathlib import Path
 from datetime import datetime
 from typing import Union, List, Optional
 import time
+load_dotenv()
+SECRET_KEY = os.getenv("SECRET_KEY", "fallbackkey").encode()
 
 # Define inbox directory
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -13,6 +20,10 @@ INBOX_DIR.mkdir(exist_ok=True)
 LOG_DIR = PROJECT_ROOT / "logs"
 LOG_DIR.mkdir(exist_ok=True)
 
+def compute_hmac(message: str) -> str:
+    """Compute HMAC-SHA256 for a given message using SECRET_KEY."""
+    return hmac.new(SECRET_KEY, message.encode(), hashlib.sha256).hexdigest()
+
 def process_startup_handshakes(self_id: str, peer_id: str):
     """
     Archive stale msgs, send handshake, then retry until peer replies.
@@ -20,8 +31,13 @@ def process_startup_handshakes(self_id: str, peer_id: str):
     archive_inbox(self_id)
     max_attempts = 10
     for attempt in range(1, max_attempts + 1):
-        send_message(to=peer_id, sender=self_id,
-                     message="Handshake Init", msg_type="handshake")
+        send_message(
+            to=peer_id, 
+            sender=self_id,
+            message="Handshake Init", 
+            msg_type="handshake",
+            hmac_sig=compute_hmac("Handshake Init")
+            )
         print(f"🤝 {self_id} sent handshake to {peer_id} (attempt {attempt})")
         if wait_for_peer_handshake(self_id, peer_id, timeout=1):
             return
@@ -65,9 +81,6 @@ def archive_inbox(assistant_name: str):
     with open(log_file, 'w') as f:
         json.dump(messages, f, indent=2)
 
-    with open(inbox_path, 'w') as f:
-        json.dump([], f)
-
 def init_conversation(assistant_name: str) -> str:
     """Ensure an inbox file exists for the assistant."""
     inbox_path = INBOX_DIR / f"{assistant_name}.json"
@@ -82,7 +95,8 @@ def send_message(
     message: str,
     msg_type: str = "user",
     conversation_id: Optional[str] = None,
-    user_initiated: bool = False
+    user_initiated: bool = False,
+    hmac_sig: Optional[str] = None
 ):
     """Append a message to the recipient's inbox."""
     inbox_path = INBOX_DIR / f"{to}.json"
@@ -94,14 +108,23 @@ def send_message(
     except (json.JSONDecodeError, FileNotFoundError):
         messages = []
 
-    messages.append({
+    msg_data = {
         "from": sender,
         "message": message,
         "timestamp": datetime.now().isoformat(),
         "type": msg_type,
         "conversation_id": conversation_id,
         "user_initiated": user_initiated
-    })
+    }
+
+    if hmac_sig is not None:
+        msg_data["hmac_sig"] = hmac_sig
+
+    messages.append(msg_data)
+
+    with open(inbox_path, 'w') as f:
+        json.dump(messages, f, indent=2)
+
 
     with open(inbox_path, 'w') as f:
         json.dump(messages, f, indent=2)

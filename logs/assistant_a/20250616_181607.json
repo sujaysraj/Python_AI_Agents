@@ -1,0 +1,42 @@
+[
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:16:02.760103",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:16:03.767462",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:16:04.775277",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:16:05.783035",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_b",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-16T18:16:06.790550",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]

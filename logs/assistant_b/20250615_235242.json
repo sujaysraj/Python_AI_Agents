@@ -1,0 +1,18 @@
+[
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T23:52:41.461783",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  },
+  {
+    "from": "assistant_a",
+    "message": "Handshake Init",
+    "timestamp": "2025-06-15T23:52:42.467981",
+    "type": "handshake",
+    "conversation_id": null,
+    "user_initiated": false
+  }
+]
