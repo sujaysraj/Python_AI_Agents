@@ -1,175 +1,155 @@
-# common/messenger.py
+# common/messenger.py — clean, working version
+"""
+Messenger
+~~~~~~~~~
+• End‑to‑end encryption via Fernet
+• Outbound queue → background thread so .send() is non‑blocking
+• Duplicate‑suppression (exact + near‑duplicate)
+• Helper .receive() returns **one** decrypted message dict or None
 
-import json
-import sys
-import hmac
+The only public methods you need are:
+    messenger.send(...)
+    messenger.receive()
+
+Both assistants *must* share the same SECRET_KEY string (32‑byte url‑safe
+base64) which you load from .env and pass into Messenger.
+"""
+from __future__ import annotations
+
+import difflib
 import hashlib
+import json
 import os
-from dotenv import load_dotenv
-from pathlib import Path
-from datetime import datetime
-from typing import Union, List, Optional
+import queue
+import threading
 import time
-load_dotenv()
-SECRET_KEY = os.getenv("SECRET_KEY", "fallbackkey").encode()
+from typing import Any, Dict, List, Optional
 
-# Define inbox directory
-PROJECT_ROOT = Path(__file__).resolve().parent.parent
-INBOX_DIR = PROJECT_ROOT / "inbox"
-INBOX_DIR.mkdir(exist_ok=True)
-LOG_DIR = PROJECT_ROOT / "logs"
-LOG_DIR.mkdir(exist_ok=True)
+from cryptography.fernet import Fernet, InvalidToken
 
-def compute_hmac(message: str) -> str:
-    """Compute HMAC-SHA256 for a given message using SECRET_KEY."""
-    return hmac.new(SECRET_KEY, message.encode(), hashlib.sha256).hexdigest()
+from common.transport import BaseTransport
 
-def process_startup_handshakes(self_id: str, peer_id: str):
-    """
-    Archive stale msgs, send handshake, then retry until peer replies.
-    """
-    archive_inbox(self_id)
-    max_attempts = 10
-    for attempt in range(1, max_attempts + 1):
-        send_message(
-            to=peer_id, 
-            sender=self_id,
-            message="Handshake Init", 
-            msg_type="handshake",
-            hmac_sig=compute_hmac("Handshake Init")
-            )
-        print(f"🤝 {self_id} sent handshake to {peer_id} (attempt {attempt})")
-        if wait_for_peer_handshake(self_id, peer_id, timeout=1):
+# ───────────────────── constants ─────────────────────
+DEFAULT_DEDUP_WINDOW = 50
+SIMILARITY_THRESHOLD = 0.90
+SENDER_THREAD_SLEEP = 0.05   # seconds between queue polls
+
+# ───────────────────── Messenger ─────────────────────
+class Messenger:
+    def __init__(
+        self,
+        name: str,
+        transport: BaseTransport,
+        secret_key: str,                   # base64 string, *not* bytes!
+        dedup_window: int = DEFAULT_DEDUP_WINDOW,
+        similarity_threshold: float = SIMILARITY_THRESHOLD,
+    ) -> None:
+        self.name = name
+        self.transport = transport
+        self._cipher = Fernet(secret_key)
+
+        # outbound queue
+        self._outbox: "queue.Queue[Dict[str, Any]]" = queue.Queue()
+        threading.Thread(target=self._drain_outbox, daemon=True).start()
+
+        # deduplication memory
+        self._recent_plain: List[str] = []
+        self._recent_hash:  List[str] = []
+        self._dedup_window = dedup_window
+        self._similarity_threshold = similarity_threshold
+        self._lock = threading.Lock()
+
+    # ── public api ────────────────────────────────────
+    def send(
+        self,
+        to: str,
+        message: str,
+        msg_type: str = "user",
+        conversation_id: Optional[str] = None,
+        user_initiated: bool = False,
+    ) -> None:
+        if self._is_duplicate(message):
+            print(f"[{self.name}] suppressing duplicate outbound → {to}: {message[:60]}")
             return
-    print(f"⚠️ {self_id} did not receive handshake from {peer_id} after {max_attempts} attempts")
+        payload = {
+            "to": to,
+            "sender": self.name,
+            "plaintext": message,
+            "msg_type": msg_type,
+            "conversation_id": conversation_id,
+            "user_initiated": user_initiated,
+        }
+        self._outbox.put(payload)
+        self._remember(message)
 
-def wait_for_peer_handshake(self_id: str, peer_id: str, timeout: int = 5):
-    """
-    Block up to `timeout` seconds waiting for a handshake from peer_id.
-    """
-    for _ in range(timeout):
-        msgs = peek_messages(self_id)
-        for m in msgs or []:
-            if m.get("type") == "handshake" and m.get("from") == peer_id:
-                print(f"🤝 {self_id} got handshake from {peer_id}")
-                clear_inbox(self_id)
-                return True
-        time.sleep(1)
-    return False
+    def receive(self) -> Optional[Dict[str, Any]]:
+        """Return ONE decrypted message dict or None if inbox empty"""
+        encrypted_messages = self.transport.receive_messages(self.name)
+        if not encrypted_messages:
+            return None
 
-def archive_inbox(assistant_name: str):
-    """Move all messages from inbox to a log file with a timestamp."""
-    inbox_path = INBOX_DIR / f"{assistant_name}.json"
-    if not inbox_path.exists():
-        return
+        # normalise to dict
+        encrypted = encrypted_messages[0] if isinstance(encrypted_messages, list) else encrypted_messages
+        if encrypted is None or "message" not in encrypted:
+            return None  # malformed
 
-    with open(inbox_path, 'r') as f:
         try:
-            messages = json.load(f)
-        except json.JSONDecodeError:
-            messages = []
+            decrypted_text = self._cipher.decrypt(encrypted["message"].encode()).decode()
+        except InvalidToken:
+            print(f"[{self.name}] WARNING: could not decrypt message from {encrypted.get('from')}")
+            return None
 
-    if not messages:
-        return
+        # inbound dedup
+        if self._is_duplicate(decrypted_text, inbound=True):
+            return None
+        self._remember(decrypted_text, inbound=True)
 
-    log_path = LOG_DIR / assistant_name
-    log_path.mkdir(parents=True, exist_ok=True)
+        return {
+            "sender": encrypted["from"],
+            "message": decrypted_text,
+            "timestamp": encrypted.get("timestamp"),
+            "type": encrypted.get("type", "user"),
+            "conversation_id": encrypted.get("conversation_id"),
+            "user_initiated": encrypted.get("user_initiated", False),
+        }
 
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    log_file = log_path / f"{timestamp}.json"
+    # ── internal helpers ──────────────────────────────
+    def _drain_outbox(self) -> None:
+        while True:
+            try:
+                item = self._outbox.get(timeout=SENDER_THREAD_SLEEP)
+            except queue.Empty:
+                continue
 
-    with open(log_file, 'w') as f:
-        json.dump(messages, f, indent=2)
+            ciphertext = self._cipher.encrypt(item["plaintext"].encode()).decode()
+            self.transport.send_message(
+                to=item["to"],
+                sender=item["sender"],
+                message=ciphertext,
+                msg_type=item["msg_type"],
+                conversation_id=item["conversation_id"],
+                user_initiated=item["user_initiated"],
+            )
+            self._outbox.task_done()
+            print(f"[{self.name}] ✉️ Sent encrypted message to {item['to']}")
 
-def init_conversation(assistant_name: str) -> str:
-    """Ensure an inbox file exists for the assistant."""
-    inbox_path = INBOX_DIR / f"{assistant_name}.json"
-    if not inbox_path.exists():
-        with open(inbox_path, "w") as f:
-            json.dump([], f)
-    return assistant_name
+    def _hash(self, text: str) -> str:
+        return hashlib.sha256(text.encode()).hexdigest()
 
-def send_message(
-    to: str,
-    sender: str,
-    message: str,
-    msg_type: str = "user",
-    conversation_id: Optional[str] = None,
-    user_initiated: bool = False,
-    hmac_sig: Optional[str] = None
-):
-    """Append a message to the recipient's inbox."""
-    inbox_path = INBOX_DIR / f"{to}.json"
-    inbox_path.touch(exist_ok=True)
+    def _is_duplicate(self, text: str, inbound: bool = False) -> bool:
+        with self._lock:
+            h = self._hash(text)
+            if h in self._recent_hash:
+                return True
+            for prev in self._recent_plain:
+                if difflib.SequenceMatcher(None, prev, text).ratio() >= self._similarity_threshold:
+                    return True
+            return False
 
-    try:
-        with open(inbox_path, 'r') as f:
-            messages = json.load(f)
-    except (json.JSONDecodeError, FileNotFoundError):
-        messages = []
-
-    msg_data = {
-        "from": sender,
-        "message": message,
-        "timestamp": datetime.now().isoformat(),
-        "type": msg_type,
-        "conversation_id": conversation_id,
-        "user_initiated": user_initiated
-    }
-
-    if hmac_sig is not None:
-        msg_data["hmac_sig"] = hmac_sig
-
-    messages.append(msg_data)
-
-    with open(inbox_path, 'w') as f:
-        json.dump(messages, f, indent=2)
-
-
-    with open(inbox_path, 'w') as f:
-        json.dump(messages, f, indent=2)
-
-def receive_messages(
-    recipient: str,
-    last_only: bool = False
-) -> Optional[Union[dict, List[dict]]]:
-    """Read and clear messages for the recipient."""
-    inbox_path = INBOX_DIR / f"{recipient}.json"
-    if not inbox_path.exists():
-        return None
-
-    try:
-        with open(inbox_path, 'r') as f:
-            messages = json.load(f)
-    except json.JSONDecodeError:
-        messages = []
-
-    if not messages:
-        return None
-
-    result = messages[-1] if last_only else messages
-
-    with open(inbox_path, 'w') as f:
-        json.dump([], f)
-
-    return result
-
-def peek_messages(recipient: str) -> Optional[List[dict]]:
-    """Read messages without clearing the inbox."""
-    inbox_path = INBOX_DIR / f"{recipient}.json"
-    if not inbox_path.exists():
-        return None
-
-    try:
-        with open(inbox_path, 'r') as f:
-            messages = json.load(f)
-    except json.JSONDecodeError:
-        messages = []
-
-    return messages or None
-
-def clear_inbox(recipient: str):
-    """Clear the inbox for the recipient."""
-    inbox_path = INBOX_DIR / f"{recipient}.json"
-    with open(inbox_path, 'w') as f:
-        json.dump([], f)
+    def _remember(self, text: str, inbound: bool = False) -> None:
+        with self._lock:
+            self._recent_hash.append(self._hash(text))
+            self._recent_plain.append(text)
+            if len(self._recent_plain) > self._dedup_window:
+                self._recent_plain.pop(0)
+                self._recent_hash.pop(0)

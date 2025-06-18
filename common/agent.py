@@ -1,174 +1,160 @@
 # common/agent.py
-
 import requests
 import time
 import hmac
 import hashlib
 import sys
-import select
-from dotenv import load_dotenv
 import os
 from pathlib import Path
+from dotenv import load_dotenv
+
 sys.path.append(str(Path(__file__).resolve().parent.parent))
-from common.messenger import (
-    send_message,
-    receive_messages,
-    archive_inbox,
-)
+
+from common.transport import FileTransport
+from common.messenger import Messenger
+
+# Load environment variables
 load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY", "fallbackkey").encode()
-
 OLLAMA_HOST = "http://localhost:11434"
-MODEL_NAME = "phi3"
+MODEL_NAME = "mistral"
 
-def get_response_from_phi(prompt: str, assistant_name: str = "assistant", retries: int = 3, backoff: float = 1.0) -> str:
-    """Send prompt to local Phi-3 model via Ollama with retry logic and return response."""
-    for attempt in range(1, retries + 1):
-        try:
-            response = requests.post(
-                f"{OLLAMA_HOST}/api/generate",
-                json={
-                    "model": MODEL_NAME,
-                    "prompt": prompt,
-                    "stream": False
-                },
-                timeout=60
-            )
-            response.raise_for_status()
-            data = response.json()
-            return data.get("response", "").strip()
-        except requests.RequestException as e:
-            if attempt < retries:
-                    print(f"⚠️ Attempt {attempt} failed: {e}. Retrying in {backoff} seconds...")
-                    time.sleep(backoff)
-                    backoff *= 2  # Exponential backoff
-            else:
-                return f"❌ Failed to get response from {MODEL_NAME} after {retries} attempts: {e}"
 
 def compute_hmac(message: str) -> str:
-    """Compute HMAC-SHA256 for a given message using SECRET_KEY."""
     return hmac.new(SECRET_KEY, message.encode(), hashlib.sha256).hexdigest()
 
 
+def get_response_from_phi(prompt: str) -> str:
+    if not prompt.strip():
+        return ""
 
-def handle_handshake(self_id: str, peer_id: str, received_from: str, message: str, provided_sig: str):
-    expected_sig = compute_hmac(message)
-    print(f"🔐 {self_id} expected HMAC: {expected_sig} for message: {message}")
-
-    if provided_sig != expected_sig:
-        print(f"🚨 {self_id} HMAC mismatch!\nExpected: {expected_sig}\nReceived: {provided_sig}\nMessage ignored.")
-        return
-
-    print(f"✅ {self_id} HMAC verified for handshake from {received_from}")
-    print(f"🤝 {self_id} got handshake from {received_from}")
-
-    # ✅ Only respond if it's an initial handshake, not an ACK
-    if received_from == peer_id and message.strip() == "Handshake Init":
-        send_message(
-            to=peer_id,
-            sender=self_id,
-            message="Handshake ACK",
-            msg_type="handshake",
-            hmac_sig=compute_hmac("Handshake ACK")
-        )
-
-
-def handle_user_input(self_id: str, peer_id: str, user_input: str):
-    print(f"👤 You: {user_input}")
-    send_message(
-        to=peer_id,
-        sender=self_id,
-        message=user_input,
-        msg_type="bot",
-        user_initiated=True,
-        hmac_sig=compute_hmac(user_input)
+    SYSTEM_PROMPT = (
+        "You are a concise, polite AI assistant. "
+        "Reply in under 3 sentences. Avoid lists or greetings unless asked."
     )
-    wait_for_peer_response(self_id)
 
-def handle_incoming_message(self_id: str, peer_id: str, msg: dict):
-    msg_type = msg.get("type")
-    msg_sender = msg.get("from")
-    msg_text = msg.get("message")
-    provided_sig = msg.get("hmac_sig")
+    try:
+        full_prompt = f"{SYSTEM_PROMPT}\n\nUser: {prompt}\nAssistant:"
+        resp = requests.post(
+            "http://localhost:11434/api/generate",
+            json={
+                "model": "mistral",
+                "prompt": full_prompt,
+                "stream": False,
+                "options": {
+                    "temperature": 0.6,
+                    "top_p": 0.9,
+                    "num_predict": 80  # keeps it short
+                }
+            },
+            timeout=60,
+        )
+        resp.raise_for_status()
+        data = resp.json()
+        return data.get("response", "").strip()
+    except Exception as e:
+        print(f"[ERROR] get_response_from_phi: {e}")
+        return f"⚠️ Error: {e}"
 
-    if not (msg_type and msg_sender and msg_text):
-        print(f"⚠️ Malformed message ignored: {msg}")
+
+def send_text(sender: str, to: str, text: str, user_initiated: bool = True, messenger: Messenger = None) -> None:
+    if not text.strip():
+        print(f"⚠️  {sender} tried to send empty message — skipped.")
         return
 
-    if msg_type == "handshake":
-        handle_handshake(
-            self_id=self_id,
-            peer_id=peer_id,
-            received_from=msg_sender,
-            message=msg_text,
-            provided_sig=provided_sig
-        )
-        archive_inbox(self_id)
+    msg_type = "user" if user_initiated else "bot"
+
+    messenger.send(
+        to=to,
+        message=text,
+        msg_type=msg_type,
+        user_initiated=user_initiated,
+    )
+
+
+def handle_handshake(self_id: str, peer_id: str, msg: dict, messenger: Messenger):
+    sender = msg.get("from")
+    message = msg.get("message")
+    sig = msg.get("hmac_sig")
+    if compute_hmac(message) != sig:
+        print(f"🚨 {self_id} HMAC mismatch for handshake from {sender}")
+        return
+    print(f"🤝 {self_id} got handshake from {sender}")
+    messenger.send(
+        to=sender,
+        sender=self_id,
+        message="Handshake ACK",
+        msg_type="handshake",
+    )
+
+
+def handle_bot_message(self_id: str, peer_id: str, msg: dict, messenger: Messenger):
+    sender = msg.get("from")
+    text = msg.get("message")
+    sig = msg.get("hmac_sig")
+
+    if sender == self_id or not msg.get("user_initiated", False):
         return
 
-    elif msg_type == "bot":
-        expected_sig = compute_hmac(msg_text)
-        print(f"🔐 {self_id} expected HMAC: {expected_sig} for message: {msg_text}")
+    if compute_hmac(text) != sig:
+        print(f"🚨 {self_id} HMAC mismatch for message from {sender}")
+        return
 
-        if msg_sender == self_id or not msg.get("user_initiated", False):
-            return  # avoid echo or loop
+    print(f"📩 {sender} → {self_id}: {text}")
+    response = get_response_from_phi(text)
+    print(f"🧠 {self_id}: {response}")
+    messenger.send(
+        to=sender,  # reply to sender of original message
+        message=response,
+        msg_type="bot",
+        user_initiated=False,
+    )
 
-        if provided_sig != expected_sig:
-            print(f"🚨 {self_id} HMAC mismatch!\nExpected: {expected_sig}\nReceived: {provided_sig}\nMessage ignored.")
-            return
 
-        print(f"✅ {self_id} HMAC verified for message from {msg_sender}")
-        print(f"📩 {msg_sender} → {self_id}: {msg_text}")
-        response = get_response_from_phi(msg_text, assistant_name=self_id)
-        print(f"🧠 {self_id}: {response}")
-        send_message(
-            to=peer_id,
-            sender=self_id,
-            message=response,
-            msg_type="bot",
-            user_initiated=False,
-            hmac_sig=compute_hmac(response)
-        )
+def dispatch_message(self_id: str, peer_id: str, msg: dict, messenger: Messenger):
+    mtype = msg.get("type")
+    if not msg.get("message", "").strip():
+        print(f"⚠️  {self_id} received empty message, ignoring.")
+        return
 
+    if mtype == "handshake":
+        handle_handshake(self_id, peer_id, msg, messenger)
+    elif mtype in ("bot", "user"):
+        handle_bot_message(self_id, peer_id, msg, messenger)
     else:
-        print(f"⚠️ Unknown message type: {msg_type}")
+        print(f"⚠️ {self_id}: Unknown message type {mtype}")
 
-
-def wait_for_peer_response(self_id: str):
-    for _ in range(5):
-        time.sleep(1)
-        messages = receive_messages(self_id) or []
-        for msg in messages:
-            if msg.get("type") == "bot" and msg.get("from") != self_id:
-                print(f"📩 {msg['from']} → {self_id}: {msg['message']}")
-                return
-    archive_inbox(self_id)
 
 def run_loop(self_id: str, peer_id: str):
-    """
-    Continuous loop:
-      • Checks stdin non‑blocking for user input.
-      • Always polls inbox for new messages every 0.5 s.
-      • /exit quits cleanly.
-    """
-    print("💬 Type your message (or /exit to quit):")
+    global transport
+    inbox_dir = Path(__file__).resolve().parent.parent / "inbox"
+    transport = FileTransport(inbox_dir)
+    messenger = Messenger(name=self_id, transport=transport, secret_key=SECRET_KEY)
+
+    print(f"🟢 {self_id} ready. Talking to {peer_id}. Type /exit to quit.")
     try:
         while True:
-            # ── 1) Non‑blocking user input
-            if select.select([sys.stdin], [], [], 0)[0]:
-                user_input = sys.stdin.readline().strip()
-                if user_input.lower() in {"/exit", "exit", "quit", ":q"}:
-                    print(f"👋 {self_id} exiting.")
-                    break
-                if user_input:
-                    handle_user_input(self_id, peer_id, user_input)
+            msg = input().strip()
+            if msg.lower() in {"/exit", "exit", ":q"}:
+                print(f"👋 {self_id} exiting.")
+                break
+            if msg:
+                send_text(self_id, peer_id, msg, user_initiated=True, messenger=messenger)
 
-            # ── 2) Always poll for new messages
-            messages = receive_messages(self_id) or []
-            for msg in messages:
-                handle_incoming_message(self_id, peer_id, msg)
-
-            time.sleep(0.5)
-
+            # Process incoming
+            message = messenger.receive()
+            if message:
+                dispatch_message(self_id, peer_id, message, messenger)
+                time.sleep(1)
     except KeyboardInterrupt:
         print(f"\n👋 {self_id} interrupted. Exiting.")
+
+
+if __name__ == "__main__":
+    import argparse
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--id", required=True, help="This assistant's name")
+    parser.add_argument("--peer", required=True, help="Peer assistant's name")
+    args = parser.parse_args()
+
+    run_loop(args.id, args.peer)
