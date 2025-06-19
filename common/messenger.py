@@ -1,155 +1,114 @@
-# common/messenger.py — clean, working version
-"""
-Messenger
-~~~~~~~~~
-• End‑to‑end encryption via Fernet
-• Outbound queue → background thread so .send() is non‑blocking
-• Duplicate‑suppression (exact + near‑duplicate)
-• Helper .receive() returns **one** decrypted message dict or None
-
-The only public methods you need are:
-    messenger.send(...)
-    messenger.receive()
-
-Both assistants *must* share the same SECRET_KEY string (32‑byte url‑safe
-base64) which you load from .env and pass into Messenger.
-"""
-from __future__ import annotations
-
-import difflib
-import hashlib
-import json
 import os
-import queue
-import threading
-import time
-from typing import Any, Dict, List, Optional
+import json
+import base64
+import hashlib
+from typing import List, Optional
+from Crypto.Cipher import AES
+from Crypto.Random import get_random_bytes
+from datetime import datetime
 
-from cryptography.fernet import Fernet, InvalidToken
+INBOX_DIR = "inbox"
 
-from common.transport import BaseTransport
 
-# ───────────────────── constants ─────────────────────
-DEFAULT_DEDUP_WINDOW = 50
-SIMILARITY_THRESHOLD = 0.90
-SENDER_THREAD_SLEEP = 0.05   # seconds between queue polls
+def _ensure_inbox():
+    os.makedirs(INBOX_DIR, exist_ok=True)
 
-# ───────────────────── Messenger ─────────────────────
+
+def _get_inbox_path(assistant_name: str) -> str:
+    return os.path.join(INBOX_DIR, f"{assistant_name}.json")
+
+
 class Messenger:
-    def __init__(
-        self,
-        name: str,
-        transport: BaseTransport,
-        secret_key: str,                   # base64 string, *not* bytes!
-        dedup_window: int = DEFAULT_DEDUP_WINDOW,
-        similarity_threshold: float = SIMILARITY_THRESHOLD,
-    ) -> None:
-        self.name = name
-        self.transport = transport
-        self._cipher = Fernet(secret_key)
+    def __init__(self, self_name: str, shared_key: str):
+        _ensure_inbox()
+        self.self_name = self_name
+        self.shared_key = hashlib.sha256(shared_key.encode()).digest()
 
-        # outbound queue
-        self._outbox: "queue.Queue[Dict[str, Any]]" = queue.Queue()
-        threading.Thread(target=self._drain_outbox, daemon=True).start()
+    def _encrypt(self, plaintext: str) -> str:
+        nonce = get_random_bytes(12)
+        cipher = AES.new(self.shared_key, AES.MODE_GCM, nonce=nonce)
+        ciphertext, tag = cipher.encrypt_and_digest(plaintext.encode())
+        payload = base64.b64encode(nonce + tag + ciphertext).decode()
+        return payload
 
-        # deduplication memory
-        self._recent_plain: List[str] = []
-        self._recent_hash:  List[str] = []
-        self._dedup_window = dedup_window
-        self._similarity_threshold = similarity_threshold
-        self._lock = threading.Lock()
-
-    # ── public api ────────────────────────────────────
-    def send(
-        self,
-        to: str,
-        message: str,
-        msg_type: str = "user",
-        conversation_id: Optional[str] = None,
-        user_initiated: bool = False,
-    ) -> None:
-        if self._is_duplicate(message):
-            print(f"[{self.name}] suppressing duplicate outbound → {to}: {message[:60]}")
-            return
-        payload = {
-            "to": to,
-            "sender": self.name,
-            "plaintext": message,
-            "msg_type": msg_type,
-            "conversation_id": conversation_id,
-            "user_initiated": user_initiated,
-        }
-        self._outbox.put(payload)
-        self._remember(message)
-
-    def receive(self) -> Optional[Dict[str, Any]]:
-        """Return ONE decrypted message dict or None if inbox empty"""
-        encrypted_messages = self.transport.receive_messages(self.name)
-        if not encrypted_messages:
+    def _decrypt(self, payload: str) -> Optional[str]:
+        try:
+            raw = base64.b64decode(payload.encode())
+            nonce, tag, ciphertext = raw[:12], raw[12:28], raw[28:]
+            cipher = AES.new(self.shared_key, AES.MODE_GCM, nonce=nonce)
+            plaintext = cipher.decrypt_and_verify(ciphertext, tag)
+            return plaintext.decode()
+        except Exception as e:
+            print(f"[{self.self_name}] 🔐 Failed to decrypt message: {e}")
             return None
 
-        # normalise to dict
-        encrypted = encrypted_messages[0] if isinstance(encrypted_messages, list) else encrypted_messages
-        if encrypted is None or "message" not in encrypted:
-            return None  # malformed
+    def send_message(self, to: str, message: str, msg_type: str = "user",
+                     conversation_id: Optional[str] = None, user_initiated: bool = False):
+        inbox_path = _get_inbox_path(to)
+        entry = {
+            "from": self.self_name,
+            "to": to,
+            "type": msg_type,
+            "encrypted": self._encrypt(message),
+            "timestamp": datetime.utcnow().isoformat(),
+            "conversation_id": conversation_id,
+            "user_initiated": user_initiated
+        }
 
         try:
-            decrypted_text = self._cipher.decrypt(encrypted["message"].encode()).decode()
-        except InvalidToken:
-            print(f"[{self.name}] WARNING: could not decrypt message from {encrypted.get('from')}")
-            return None
+            if os.path.exists(inbox_path):
+                with open(inbox_path, "r") as f:
+                    messages = json.load(f)
+            else:
+                messages = []
 
-        # inbound dedup
-        if self._is_duplicate(decrypted_text, inbound=True):
-            return None
-        self._remember(decrypted_text, inbound=True)
+            messages.append(entry)
 
-        return {
-            "sender": encrypted["from"],
-            "message": decrypted_text,
-            "timestamp": encrypted.get("timestamp"),
-            "type": encrypted.get("type", "user"),
-            "conversation_id": encrypted.get("conversation_id"),
-            "user_initiated": encrypted.get("user_initiated", False),
-        }
+            with open(inbox_path, "w") as f:
+                json.dump(messages, f, indent=2)
+        except Exception as e:
+            print(f"[{self.self_name}] ❌ Failed to write to inbox: {e}")
 
-    # ── internal helpers ──────────────────────────────
-    def _drain_outbox(self) -> None:
-        while True:
-            try:
-                item = self._outbox.get(timeout=SENDER_THREAD_SLEEP)
-            except queue.Empty:
+    def receive_messages(self) -> List[dict]:
+        inbox_path = _get_inbox_path(self.self_name)
+        messages = []
+
+        if not os.path.exists(inbox_path):
+            return []
+
+        try:
+            with open(inbox_path, "r") as f:
+                content = f.read()
+                if not content.strip():  # ⛑ protect against empty file
+                    return []
+                all_messages = json.loads(content)
+        except Exception as e:
+            print(f"[{self.self_name}] ❌ Failed to read inbox: {e}")
+            return []
+
+        processed = []
+        remaining = []
+
+        for msg in all_messages:
+            if msg["to"] != self.self_name:
+                remaining.append(msg)
                 continue
+            if msg["from"] == self.self_name:
+                continue  # Skip messages sent by self (paranoia check)
+            decrypted = self._decrypt(msg["encrypted"])
+            if decrypted is not None:
+                msg["plaintext"] = decrypted
+                messages.append(msg)
 
-            ciphertext = self._cipher.encrypt(item["plaintext"].encode()).decode()
-            self.transport.send_message(
-                to=item["to"],
-                sender=item["sender"],
-                message=ciphertext,
-                msg_type=item["msg_type"],
-                conversation_id=item["conversation_id"],
-                user_initiated=item["user_initiated"],
-            )
-            self._outbox.task_done()
-            print(f"[{self.name}] ✉️ Sent encrypted message to {item['to']}")
+        # write back only remaining unprocessed messages
+        with open(inbox_path, "w") as f:
+            json.dump(remaining, f, indent=2)
 
-    def _hash(self, text: str) -> str:
-        return hashlib.sha256(text.encode()).hexdigest()
+        # Remove processed messages
+        try:
+            with open(inbox_path, "w") as f:
+                json.dump(remaining, f, indent=2)
+        except Exception as e:
+            print(f"[{self.self_name}] ❌ Failed to update inbox: {e}")
 
-    def _is_duplicate(self, text: str, inbound: bool = False) -> bool:
-        with self._lock:
-            h = self._hash(text)
-            if h in self._recent_hash:
-                return True
-            for prev in self._recent_plain:
-                if difflib.SequenceMatcher(None, prev, text).ratio() >= self._similarity_threshold:
-                    return True
-            return False
-
-    def _remember(self, text: str, inbound: bool = False) -> None:
-        with self._lock:
-            self._recent_hash.append(self._hash(text))
-            self._recent_plain.append(text)
-            if len(self._recent_plain) > self._dedup_window:
-                self._recent_plain.pop(0)
-                self._recent_hash.pop(0)
+        return messages
