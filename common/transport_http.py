@@ -8,13 +8,14 @@ from Crypto.Random import get_random_bytes
 import hashlib
 
 class HTTPTransport:
-    def __init__(self, self_name, peer_url, shared_key: str, port=5000):
+    def __init__(self, self_name, peer_url, shared_key: str, port: int):
         self.self_name = self_name
         self.peer_url = peer_url.rstrip("/")
         self.shared_key = hashlib.sha256(shared_key.encode()).digest()
         self.inbox = []
+        self.port = port
         self.app = Flask(self_name)
-
+        
         @self.app.route("/inbox", methods=["POST"])
         def receive():
             msg = request.json

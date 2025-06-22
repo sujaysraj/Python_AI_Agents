@@ -16,16 +16,23 @@ from common.agent import get_response_from_phi
 
 NAME = Path(__file__).resolve().parent.name
 PEER = "assistant_b" if NAME == "assistant_a" else "assistant_a"
-PEER_URL = "http://<friend-ip>:5000"
+PEER_URL = os.environ["PEER_URL"]
+PORT = os.environ["PORT"]
+print(f"[{NAME}] 🚀 Will send messages to {PEER_URL} on {PORT}")
+
 
 load_dotenv()
 SECRET_KEY = os.getenv("SECRET_KEY")
+if not SECRET_KEY:
+    print("❌ ERROR: SECRET_KEY not set in environment.")
+    sys.exit(1)
 
 messenger = Messenger(
     self_name=NAME,
     peer_name=PEER,
     peer_url=PEER_URL,
-    shared_key=SECRET_KEY
+    shared_key=SECRET_KEY,
+    port=PORT
 )
 
 def poll_for_incoming():
@@ -45,7 +52,7 @@ def poll_for_incoming():
 
 threading.Thread(target=poll_for_incoming, daemon=True).start()
 
-print(f"[{NAME}] You can start chatting with {PEER_NAME} (Ctrl+C to exit)")
+print(f"[{NAME}] You can start chatting with {PEER} (Ctrl+C to exit)")
 try:
     while True:
         user_input = input("> ").strip()

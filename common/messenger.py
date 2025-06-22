@@ -9,10 +9,12 @@ from common.transport_http import HTTPTransport
 from datetime import datetime
 
 class Messenger:
-    def __init__(self, self_name: str, peer_name: str, peer_url: str, shared_key: str):
+    def __init__(self, self_name: str, peer_name: str, peer_url: str, shared_key: str, port: int):
         self.self_name = self_name
         self.peer_name = peer_name
-        self.transport = HTTPTransport(self_name, peer_url, shared_key)
+        self.transport = HTTPTransport(self_name, peer_url, shared_key, port)
+        self.port = port
+        print(f"[{self_name}] 🔧 peer_url set to {peer_url}")
 
     def send_message(self, to: str, message: str, msg_type: str = "user",
                      conversation_id=None, user_initiated=False):

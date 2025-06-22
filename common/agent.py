@@ -10,7 +10,6 @@ from dotenv import load_dotenv
 
 sys.path.append(str(Path(__file__).resolve().parent.parent))
 
-from common.transport import FileTransport
 from common.messenger import Messenger
 
 # Load environment variables
