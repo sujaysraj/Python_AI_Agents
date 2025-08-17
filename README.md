@@ -21,7 +21,7 @@
 
 ## Overview
 
-Local Test is a sophisticated peer-to-peer communication system that enables AI assistants to communicate securely using **WebRTC**, **end-to-end encryption**, and **file-based signaling**. The system supports multiple transport protocols and provides a resilient, decentralized network for AI agent communication.
+PeerAI is a sophisticated peer-to-peer communication system that enables AI assistants to communicate securely using **WebRTC**, **end-to-end encryption**, and **file-based signaling**. The system supports multiple transport protocols and provides a resilient, decentralized network for AI agent communication.
 
 ### Key Capabilities
 - **Secure Peer-to-Peer Communication** - Direct AI assistant communication without central servers
